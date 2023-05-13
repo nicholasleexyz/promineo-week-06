@@ -32,9 +32,19 @@ span {
     /* background-color: aqua; */
 }
 
+.player-text
+{
+    width: 100%;
+    background-color: green;
+}
+
 .player {
+    height: 90%;
     display: flex;
     flex-flow: column wrap;
+    background-color: blue;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card {

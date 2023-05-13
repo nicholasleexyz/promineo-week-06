@@ -1,5 +1,7 @@
 * {
     font-family: sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -13,11 +15,15 @@ body {
     background-repeat: repeat;
 }
 
+h1 {
+    align-self: center;
+}
+
 span {
     /* background-color: blue; */
 }
 
-.players{
+.players {
     display: flex;
     width: 100%;
     height: 80%;
@@ -26,13 +32,44 @@ span {
     /* background-color: aqua; */
 }
 
-
-.player h2{
-    /* color:white; */
-    align-self: center;
+.player {
+    display: flex;
+    flex-flow: column wrap;
 }
 
-h1{
+.card {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blue; */
+    width: 200px;
+    height: 300px;
+    /* width: 90px;
+    height: 135px; */
+    border: solid;
+    outline: 10px solid #DDDDDD;
+    /* background: radial-gradient(#d34f3e, #793345); */
+    background: url("img/cards/C01.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px;
+    /* background-color: red; */
+    border-radius: 15px;
+}
+
+.card h2 {
+    display: flex;
+    /* color:white; */
+    align-self: center;
+    justify-self: start;
+    justify-content: start;
+    align-items: start;
+
+    background-color: red;
+}
+
+h1 {
     background-color: red;
 }
 
@@ -44,23 +81,23 @@ h1{
     background-image: url("img/scroll.png");
     background-size: 256px;
     background-repeat: repeat;
-    background-color: red;
+    /* background-color: red; */
     border-radius: 3%;
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     filter: drop-shadow(1px 1px 30px #202015);
 }
 
-.player {
-    display: flex;
-    flex-flow: column nowrap;
+button {
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+}
 
-    /* background-color: blue; */
-    width: 200px;
-    height: 300px;
-    /* border: solid; */
-    outline: 10px solid #DDDDDD;
-    background: radial-gradient(#d34f3e, #793345);
-    background-color: red;
-    border-radius: 1%;
+.buttons{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* align-self: end; */
+    /* align-content: center; */
 }

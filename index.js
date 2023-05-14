@@ -65,12 +65,12 @@ function createShuffledDeck() {
     let numShuffles = 1024;
 
     for (i = 0; i < numShuffles; i++) {
-        let numPiles = factors[Math.floor(Math.random() * factors.length)];
-        let sizePiles = 52 / numPiles;
-        for (let s = 0; s < sizePiles; s++) {
-            piles[s] = [];
-            for (let n = numPiles - 1; n >= 0; n--) {
-                piles[s][n] = currentDeck[currentIndex++];
+        let sizePiles = factors[Math.floor(Math.random() * factors.length)];
+        let numPiles = 52 / sizePiles;
+        for (let n = 0; n < numPiles; n++) {
+            piles[n] = [];
+            for (let s = sizePiles - 1; s >= 0; s--) {
+                piles[n][s] = currentDeck[currentIndex++];
             }
         }
         currentDeck = [].concat(...piles);

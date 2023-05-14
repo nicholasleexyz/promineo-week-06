@@ -16,11 +16,18 @@ body {
 }
 
 h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     align-self: center;
-}
-
-span {
-    /* background-color: blue; */
+    width:200px;
+    height:50px;
+    background: radial-gradient(#d34f3e, #793345);
+    color: #DDDDDD;
+    border: solid white;
+    border-radius: 4px;
+    background-color: black;
+    margin: 10px;
 }
 
 .players {
@@ -29,22 +36,34 @@ span {
     height: 80%;
     justify-content: space-evenly;
     align-items: center;
-    /* background-color: aqua; */
 }
 
 .player-text
 {
+    display: flex;
+    flex-flow: column nowrap;
+
     width: 100%;
-    background-color: green;
+    color: #DDDDDD;
+    background-color: white;
+    border: solid white;
+    border-radius: 4px;
+    background-color: black;
+    background: radial-gradient(#d34f3e, #793345);
+    padding: 4px
 }
 
 .player {
     height: 90%;
     display: flex;
     flex-flow: column wrap;
-    background-color: blue;
+    /* background-color: blue; */
     align-items: center;
     justify-content: space-between;
+}
+
+.point {
+    color: #00FFAA;
 }
 
 .card {
@@ -52,36 +71,27 @@ span {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    /* background-color: blue; */
     width: 200px;
     height: 300px;
-    /* width: 90px;
-    height: 135px; */
     border: solid;
     outline: 10px solid #DDDDDD;
-    /* background: radial-gradient(#d34f3e, #793345); */
+    background: radial-gradient(#d34f3e, #793345);
     background: url("img/cards/C01.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200px;
-    /* background-color: red; */
     border-radius: 15px;
 }
 
-.card h2 {
+/* .card h2 {
     display: flex;
-    /* color:white; */
     align-self: center;
     justify-self: start;
     justify-content: start;
     align-items: start;
 
-    background-color: red;
-}
-
-h1 {
-    background-color: red;
-}
+    background-color:blueviolet;
+} */
 
 .game {
     display: flex;
@@ -107,6 +117,8 @@ button {
 .buttons{
     display: flex;
     justify-content: center;
+    margin:10px;
+    /* padding:auto; */
     /* align-items: center; */
     /* align-self: end; */
     /* align-content: center; */

@@ -10,13 +10,19 @@ class Card {
 
 const cards = suits.map(s => ranks.map((r, i) => new Card(`${s}${r}.png`, i)));
 let deck = [];
+let cardsPlayerOne = [];
+let cardsPlayerTwo = [];
+let currentDrawIndex = 0;
+let isRunning = true;
+let scoreOne = 0;
+let scoreTwo = 0;
 
 let pointsOne = document.getElementById("points-player-one");
 let pointsTwo = document.getElementById("points-player-two");
 let currentCardOne = document.getElementById("card-player-one");
 let currentCardTwo = document.getElementById("card-player-two");
-let scoreOne = document.getElementById("score-player-one");
-let scoreTwo = document.getElementById("score-player-two");;
+let scoreTextOne = document.getElementById("score-player-one");
+let scoreTextTwo = document.getElementById("score-player-two");;
 let header = document.getElementById("header");
 let textboxOne = document.getElementById("textbox-player-one");
 let textboxTwo = document.getElementById("textbox-player-two");
@@ -32,9 +38,9 @@ if (pointsOne === null)
     console.log("Couldn't get points for player one.");
 if (pointsTwo === null)
     console.log("Couldn't get points for player two.");
-if (scoreOne === null)
+if (scoreTextOne === null)
     console.log("Couldn't get score for player one");
-if (scoreTwo === null)
+if (scoreTextTwo === null)
     console.log("Couldn't get score for player two");
 if (header === null)
     console.log("Couldn't get header element");
@@ -54,15 +60,13 @@ init();
 buttonRestart.addEventListener('click', () => init());
 buttonDraw.addEventListener('click', () => draw());
 
-deck = createShuffledDeck();
-console.log(deck);
 
 function createShuffledDeck() {
     let currentDeck = [].concat(...cards);
     let currentIndex = 0;
     let factors = [2, 4, 13, 26]; // factors of 52: 1, 2, 4, 13, 26, and 52
     let piles = [];
-    let numShuffles = 1024;
+    let numShuffles = 2048;
 
     for (i = 0; i < numShuffles; i++) {
         let sizePiles = factors[Math.floor(Math.random() * factors.length)];
@@ -82,38 +86,91 @@ function createShuffledDeck() {
 }
 
 function declareWinner(player) { // player is 1 or 0
-    if (player > 1 || player < 0 || player === null || player === undefined) console.log("'player' should be 1 or 0")
-    let msg = player === 0 ? "RED" : "BLUE";
-    let color = player === 0 ? "#d34f3e" : "#70a8ab";
+    if (player > 2 || player < 0 || player === null || player === undefined) console.log("'player' should be 0, 1 or 2 for tie")
     header.style.display = "flex";
-    header.textContent = `${msg} WINS!!!`;
-    header.style.color = color;
+    if (player === 2) {
+        header.textContent = `TIE!!!`;
+        header.style.color = "white";
+    }
+    else {
+        let msg = player === 0 ? "RED" : "BLUE";
+        let color = player === 0 ? "#d34f3e" : "#70a8ab";
+        header.textContent = `${msg} WINS!!!`;
+        header.style.color = color;
+    }
+    isRunning = false;
 }
 
+
 function draw() {
-    let rand1 = Math.floor(Math.random() * deck.length);
-    let rand2 = Math.floor(Math.random() * deck.length);
-    console.log("rand1: " + rand1);
-    console.log(deck[rand1]);
+    if (!isRunning) return;
+    let cardPlayerOne = cardsPlayerOne[currentDrawIndex];
+    let cardPlayerTwo = cardsPlayerTwo[currentDrawIndex];
 
-    setCardImage(0, deck[rand1].image);
-    setCardImage(1, deck[rand2].image);
+    // console.log("rand1: " + rand1);
+    // console.log(deck[rand1]);
 
-    // declareWinner(1);
+    setCardImage(0, cardPlayerOne.image);
+    setCardImage(1, cardPlayerTwo.image);
+    let ov = cardPlayerOne.value;
+    let tv = cardPlayerTwo.value;
+    if (ov === tv) {
+        updateScores(2);
+    }
+    else if (ov > tv) {
+        scoreOne++;
+        updateScores(0)
+    }
+    else if (ov < tv) {
+        scoreTwo++;
+        updateScores(1)
+    }
+
+
+    currentDrawIndex++;
+
+    if (currentDrawIndex > 25) {
+        if (scoreOne > scoreTwo)
+            declareWinner(0);
+        else if (scoreOne < scoreTwo)
+            declareWinner(1);
+        else
+            declareWinner(2);
+        currentDrawIndex = 0;
+    }
     // declareWinner(0);
 }
 
 function init() {
+    isRunning = true;
     setCardImage(0);
     setCardImage(1);
     header.style.display = "none";
     pointsOne.textContent = "";
     pointsTwo.textContent = "";
-    scoreOne.textContent = "Score: 0";
-    scoreTwo.textContent = "Score: 0";
 
     textboxOne.style.background = "radial-gradient(#d34f3e, #793345)";
     textboxTwo.style.background = "radial-gradient(#70a8ab, #326e75)";
+
+    deck = createShuffledDeck();
+    // console.log(deck);
+    cardsPlayerOne = deck.filter((c, i) => i % 2 == 0);
+    cardsPlayerTwo = deck.filter((c, i) => i % 2 != 0);
+    currentDrawIndex = 0;
+    scoreOne = 0;
+    scoreTwo = 0;
+    updateScores();
+    // console.log(cardsPlayerOne);
+    // console.log(cardsPlayerTwo);
+
+}
+
+function updateScores(turnWinner = -1) { // turnWinner is the player that won the current turn. use 0 for one, 1 for two, and 2 for a tie.
+    let plus = turnWinner == 2 ? " (+0)" : " (+1)";
+    let sOne = turnWinner == 0 || turnWinner == 2 ? scoreOne + plus : scoreOne;
+    let sTwo = turnWinner == 1 || turnWinner == 2 ? scoreTwo + plus : scoreTwo;
+    scoreTextOne.textContent = `Score: ${sOne}`;
+    scoreTextTwo.textContent = `Score: ${sTwo}`;
 }
 
 function setCardImage(player, url = "") { // player can be 0 or 1

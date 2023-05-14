@@ -17,45 +17,20 @@ let isRunning = true;
 let scoreOne = 0;
 let scoreTwo = 0;
 
-let pointsOne = document.getElementById("points-player-one");
-let pointsTwo = document.getElementById("points-player-two");
-let currentCardOne = document.getElementById("card-player-one");
-let currentCardTwo = document.getElementById("card-player-two");
-let scoreTextOne = document.getElementById("score-player-one");
-let scoreTextTwo = document.getElementById("score-player-two");;
-let header = document.getElementById("header");
-let textboxOne = document.getElementById("textbox-player-one");
-let textboxTwo = document.getElementById("textbox-player-two");
+let pointsOne = tryGetElementById("points-player-one");
+let pointsTwo = tryGetElementById("points-player-two");
+let currentCardOne = tryGetElementById("card-player-one");
+let currentCardTwo = tryGetElementById("card-player-two");
+let scoreTextOne = tryGetElementById("score-player-one");
+let scoreTextTwo = tryGetElementById("score-player-two");
+let header = tryGetElementById("header");
+let textboxOne = tryGetElementById("textbox-player-one");
+let textboxTwo = tryGetElementById("textbox-player-two");
 
-let buttonDraw = document.getElementById("draw");
-let buttonRestart = document.getElementById("restart");
-
-if (currentCardOne === null)
-    console.log("Couldn't get card for player one.");
-if (currentCardTwo === null)
-    console.log("Couldn't get card for player two.");
-if (pointsOne === null)
-    console.log("Couldn't get points for player one.");
-if (pointsTwo === null)
-    console.log("Couldn't get points for player two.");
-if (scoreTextOne === null)
-    console.log("Couldn't get score for player one");
-if (scoreTextTwo === null)
-    console.log("Couldn't get score for player two");
-if (header === null)
-    console.log("Couldn't get header element");
-if (textboxOne === null)
-    console.log("Couldn't get textbox element for player one.");
-if (textboxTwo === null)
-    console.log("Couldn't get textbox element for player two.");
-if (buttonDraw === null)
-    console.log("Couldn't get draw button.")
-if (buttonRestart === null)
-    console.log("Couldn't get restart button.")
-
+let buttonDraw = tryGetElementById("draw");
+let buttonRestart = tryGetElementById("restart");
 
 init();
-
 
 buttonRestart.addEventListener('click', () => init());
 buttonDraw.addEventListener('click', () => draw());
@@ -109,9 +84,6 @@ function draw() {
     let cardPlayerOne = cardsPlayerOne[currentDrawIndex];
     let cardPlayerTwo = cardsPlayerTwo[currentDrawIndex];
 
-    // console.log("rand1: " + rand1);
-    // console.log(deck[rand1]);
-
     setCardImage(0, cardPlayerOne.image);
     setCardImage(1, cardPlayerTwo.image);
     let ov = cardPlayerOne.value;
@@ -128,7 +100,6 @@ function draw() {
         updateScores(1)
     }
 
-
     currentDrawIndex++;
 
     if (currentDrawIndex > 25) {
@@ -140,7 +111,6 @@ function draw() {
             declareWinner(2);
         currentDrawIndex = 0;
     }
-    // declareWinner(0);
 }
 
 function init() {
@@ -155,7 +125,6 @@ function init() {
     textboxTwo.style.background = "radial-gradient(#70a8ab, #326e75)";
 
     deck = createShuffledDeck();
-    // console.log(deck);
     cardsPlayerOne = deck.filter((c, i) => i % 2 == 0);
     cardsPlayerTwo = deck.filter((c, i) => i % 2 != 0);
     currentDrawIndex = 0;
@@ -164,9 +133,6 @@ function init() {
     updateScores();
     buttonRestart.style.display = "none";
     buttonDraw.style.display = "inline-block";
-    // console.log(cardsPlayerOne);
-    // console.log(cardsPlayerTwo);
-
 }
 
 function updateScores(turnWinner = -1) { // turnWinner is the player that won the current turn. use 0 for one, 1 for two, and 2 for a tie.
@@ -192,5 +158,9 @@ function setCardImage(player, url = "") { // player can be 0 or 1
     }
 }
 
-/* background: radial-gradient(#d34f3e, #793345); */
-/* background: radial-gradient(#70a8ab, #326e75); */
+function tryGetElementById(id) {
+    elem = document.getElementById(id);
+    if (elem === null)
+        console.log(`Could not get element with id of "${id}"`);
+    return elem;
+}

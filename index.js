@@ -9,6 +9,7 @@ class Card {
 }
 
 const cards = suits.map(s => ranks.map((r, i) => new Card(`${s}${r}.png`, i)));
+let deck = [];
 
 let pointsOne = document.getElementById("points-player-one");
 let pointsTwo = document.getElementById("points-player-two");
@@ -19,6 +20,9 @@ let scoreTwo = document.getElementById("score-player-two");;
 let header = document.getElementById("header");
 let textboxOne = document.getElementById("textbox-player-one");
 let textboxTwo = document.getElementById("textbox-player-two");
+
+let buttonDraw = document.getElementById("draw");
+let buttonRestart = document.getElementById("restart");
 
 if (currentCardOne === null)
     console.log("Couldn't get card for player one.");
@@ -38,23 +42,55 @@ if (textboxOne === null)
     console.log("Couldn't get textbox element for player one.");
 if (textboxTwo === null)
     console.log("Couldn't get textbox element for player two.");
+if (buttonDraw === null)
+    console.log("Couldn't get draw button.")
+if (buttonRestart === null)
+    console.log("Couldn't get restart button.")
 
 
+init();
 
-header.style.display = "none";
-pointsOne.textContent = "";
-pointsTwo.textContent = "";
-scoreOne.textContent = "Score: 0";
-scoreTwo.textContent = "Score: 0";
 
-textboxOne.style.background = "radial-gradient(#d34f3e, #793345)";
-textboxTwo.style.background = "radial-gradient(#70a8ab, #326e75)";
+buttonRestart.addEventListener('click', () => init());
+buttonDraw.addEventListener('click', () => draw());
 
-setCardImage(0);
-setCardImage(1);
-setCardImage(0, "C01.png");
-setCardImage(1, "H01.png");
+deck = createShuffledDeck();
+console.log(deck);
 
+function createShuffledDeck()
+{
+    return [].concat(...cards);
+}
+
+function declareWinner(player) { // player is 1 or 0
+    if(player > 1 || player < 0 || player === null || player === undefined) console.log("'player' should be 1 or 0")
+    let msg = player === 0 ? "RED" : "BLUE";
+    let color = player === 0 ? "#d34f3e" : "#70a8ab";
+    header.style.display = "flex";
+    header.textContent = `${msg} WINS!!!`;
+    header.style.color = color;
+}
+
+function draw() {
+
+    setCardImage(0, rand1.image);
+    setCardImage(1, rand2.image);
+    // declareWinner(1);
+    // declareWinner(0);
+}
+
+function init() {
+    setCardImage(0);
+    setCardImage(1);
+    header.style.display = "none";
+    pointsOne.textContent = "";
+    pointsTwo.textContent = "";
+    scoreOne.textContent = "Score: 0";
+    scoreTwo.textContent = "Score: 0";
+
+    textboxOne.style.background = "radial-gradient(#d34f3e, #793345)";
+    textboxTwo.style.background = "radial-gradient(#70a8ab, #326e75)";
+}
 
 function setCardImage(player, url = "") { // player can be 0 or 1
     let playerCard = player === 0 ? currentCardOne : player === 1 ? currentCardTwo : null;

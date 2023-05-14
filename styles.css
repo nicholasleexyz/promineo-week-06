@@ -20,9 +20,9 @@ h1 {
     justify-content: center;
     align-items: center;
     align-self: center;
-    width:200px;
+    width:500px;
     height:50px;
-    background: radial-gradient(white, grey);
+    background: radial-gradient(rgb(93, 93, 93), rgb(24, 24, 24));
     /* background-color: #F0D8A5; */
     /* color: #DDDDDD; */
     color: black;
@@ -75,11 +75,11 @@ h1 {
     width: 200px;
     height: 300px;
     border: solid;
-    outline: 10px solid #DDDDDD;
+    /* outline: 10px solid #DDDDDD; */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200px;
-    border-radius: 15px;
+    border-radius: 16px;
     /* background: radial-gradient(#d34f3e, #793345);
     background: radial-gradient(#70a8ab, #326e75); */
     /* background: url("img/cards/back7.png"); */

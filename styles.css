@@ -22,11 +22,13 @@ h1 {
     align-self: center;
     width:200px;
     height:50px;
-    background: radial-gradient(#d34f3e, #793345);
-    color: #DDDDDD;
-    border: solid white;
-    border-radius: 4px;
-    background-color: black;
+    background: radial-gradient(white, grey);
+    /* background-color: #F0D8A5; */
+    /* color: #DDDDDD; */
+    color: black;
+    border: solid black;
+    border-radius: 10px;
+    /* background-color: black; */
     margin: 10px;
 }
 
@@ -42,14 +44,13 @@ h1 {
 {
     display: flex;
     flex-flow: column nowrap;
-
     width: 100%;
     color: #DDDDDD;
     background-color: white;
     border: solid white;
     border-radius: 4px;
     background-color: black;
-    background: radial-gradient(#d34f3e, #793345);
+    /* background: radial-gradient(#d34f3e, #793345); */
     padding: 4px
 }
 
@@ -62,7 +63,7 @@ h1 {
     justify-content: space-around;
 }
 
-.point {
+.points {
     color: #00FFAA;
 }
 
@@ -75,14 +76,21 @@ h1 {
     height: 300px;
     border: solid;
     outline: 10px solid #DDDDDD;
-    background: radial-gradient(#d34f3e, #793345);
-    /* background: url("img/cards/back7.png"); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200px;
     border-radius: 15px;
+    /* background: radial-gradient(#d34f3e, #793345);
+    background: radial-gradient(#70a8ab, #326e75); */
+    /* background: url("img/cards/back7.png"); */
 }
 
+/* .player-text:last-of-type{
+    background: radial-gradient(#70a8ab, #326e75);
+}
+.card:last-of-type{
+    background: radial-gradient(#70a8ab, #326e75);
+} */
 /* .card h2 {
     display: flex;
     align-self: center;
@@ -103,7 +111,7 @@ h1 {
     background-repeat: repeat;
     /* background-color: red; */
     border-radius: 3%;
-    width: 600px;
+    width: 900px;
     height: 600px;
     filter: drop-shadow(1px 1px 30px #202015);
 }

@@ -86,6 +86,8 @@ function createShuffledDeck() {
 }
 
 function declareWinner(player) { // player is 1 or 0
+    buttonRestart.style.display = "inline-block";
+    buttonDraw.style.display = "none";
     if (player > 2 || player < 0 || player === null || player === undefined) console.log("'player' should be 0, 1 or 2 for tie")
     header.style.display = "flex";
     if (player === 2) {
@@ -160,6 +162,8 @@ function init() {
     scoreOne = 0;
     scoreTwo = 0;
     updateScores();
+    buttonRestart.style.display = "none";
+    buttonDraw.style.display = "inline-block";
     // console.log(cardsPlayerOne);
     // console.log(cardsPlayerTwo);
 

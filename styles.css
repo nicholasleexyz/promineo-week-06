@@ -59,7 +59,7 @@ h1 {
     flex-flow: column wrap;
     /* background-color: blue; */
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .point {
@@ -76,7 +76,7 @@ h1 {
     border: solid;
     outline: 10px solid #DDDDDD;
     background: radial-gradient(#d34f3e, #793345);
-    background: url("img/cards/C01.png");
+    /* background: url("img/cards/back7.png"); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200px;

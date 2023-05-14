@@ -57,13 +57,32 @@ buttonDraw.addEventListener('click', () => draw());
 deck = createShuffledDeck();
 console.log(deck);
 
-function createShuffledDeck()
-{
-    return [].concat(...cards);
+function createShuffledDeck() {
+    let currentDeck = [].concat(...cards);
+    let currentIndex = 0;
+    let factors = [2, 4, 13, 26]; // factors of 52: 1, 2, 4, 13, 26, and 52
+    let piles = [];
+    let numShuffles = 1024;
+
+    for (i = 0; i < numShuffles; i++) {
+        let numPiles = factors[Math.floor(Math.random() * factors.length)];
+        let sizePiles = 52 / numPiles;
+        for (let s = 0; s < sizePiles; s++) {
+            piles[s] = [];
+            for (let n = numPiles - 1; n >= 0; n--) {
+                piles[s][n] = currentDeck[currentIndex++];
+            }
+        }
+        currentDeck = [].concat(...piles);
+        currentIndex = 0;
+        piles = [];
+    }
+
+    return currentDeck;
 }
 
 function declareWinner(player) { // player is 1 or 0
-    if(player > 1 || player < 0 || player === null || player === undefined) console.log("'player' should be 1 or 0")
+    if (player > 1 || player < 0 || player === null || player === undefined) console.log("'player' should be 1 or 0")
     let msg = player === 0 ? "RED" : "BLUE";
     let color = player === 0 ? "#d34f3e" : "#70a8ab";
     header.style.display = "flex";
@@ -72,9 +91,14 @@ function declareWinner(player) { // player is 1 or 0
 }
 
 function draw() {
+    let rand1 = Math.floor(Math.random() * deck.length);
+    let rand2 = Math.floor(Math.random() * deck.length);
+    console.log("rand1: " + rand1);
+    console.log(deck[rand1]);
 
-    setCardImage(0, rand1.image);
-    setCardImage(1, rand2.image);
+    setCardImage(0, deck[rand1].image);
+    setCardImage(1, deck[rand2].image);
+
     // declareWinner(1);
     // declareWinner(0);
 }

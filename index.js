@@ -90,8 +90,8 @@ function draw() {
 
     setCardImage(0, cardPlayerOne.image);
     setCardImage(1, cardPlayerTwo.image);
-    let ov = cardPlayerOne.value;
-    let tv = cardPlayerTwo.value;
+    let ov = cardPlayerOne.powerLevel;
+    let tv = cardPlayerTwo.powerLevel;
     if (ov === tv) {
         updateScores(2);
     }

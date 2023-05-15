@@ -1,0 +1,18 @@
+Wanted to make it a real(ish) web app
+	reasons:
+		fun
+		good practice
+
+Installed mocha and chai
+	first time writing any sort of unit test
+		pretty cool
+
+Only used one class as a container for the card data.
+Wrote the rest procedurally/functionally.
+
+"zipped" the suits and ranks together to build a deck of Card instances.
+Javascript doesn't have a zip function so it's done with nested map functions.
+This is how the image paths get concatenated then passed in with the "powerLevel" to create a Card object.
+This ends up being a multidemensional array which ends up getting flattened later for the shuffle function.
+
+Most of the hassle was with css html stuff. The logic was pretty straigtforward.

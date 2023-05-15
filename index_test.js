@@ -12,12 +12,12 @@ describe("MyFunctions", function () {
             deck.forEach(c => expect(c.image).to.not.equal("" || undefined || null));
         });
 
-        it("Should return objects that have a powerLevel property.", function () {
+        it("Should return objects that have a powerLevel property that is of type 'number'.", function () {
             var deck = createShuffledDeck();
             deck.forEach(c => expect(typeof (c.powerLevel)).to.equal("number"));
         });
 
-        it("Should return an array of elements that unique image paths.", function () {
+        it("Should return an array of elements that have unique image paths.", function () {
             var deck = createShuffledDeck();
             expect(deck.length).to.equal([...new Set(deck.map(c => c.image))].length);
         });

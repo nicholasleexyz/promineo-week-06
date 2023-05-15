@@ -15,7 +15,17 @@ body {
     background-repeat: repeat;
 }
 
-h1 {
+.tester {
+    width: 100%;
+    height: fit-content;
+    background-color: grey;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+}
+
+h1#header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,7 +93,7 @@ h1 {
     display: flex;
     flex-flow: column nowrap;
     background-image: url("img/scroll.png");
-    background-size: 256px;
+    background-size: 512px;
     background-repeat: repeat;
     border-radius: 3%;
     width: 900px;

@@ -1,3 +1,10 @@
+function doSomething(x, y){
+    if(typeof x != 'string')
+        throw new Error('x must be a string.');
+
+    return x + y;
+}
+
 const suits = ["C", "D", "H", "S"];
 const ranks = ["02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "01"];
 

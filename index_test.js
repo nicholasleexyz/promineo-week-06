@@ -1,16 +1,25 @@
 var expect = chai.expect;
 
 describe("MyFunctions", function () {
-    describe("#doSomthing", function () {
-        it("Should concatenate two parameters", function () {
-            var x = doSomething("Hello", 5);
-            expect(x).to.equal("Hello5");
+    describe("#createShuffledDeck", function () {
+        it("Should return an array with a length of 52.", function () {
+            var deck = createShuffledDeck();
+            expect(deck.length).to.equal(52);
         });
 
-        it("Should throw an error if first paramter is not a string", function () {
-            expect(function () {
-                doSomething(5, 5);
-            }).to.throw(Error);
+        it("Should return objects with image paths.", function () {
+            var deck = createShuffledDeck();
+            deck.forEach(c => expect(c.image).to.not.equal("" || undefined || null));
+        });
+
+        it("Should return objects that have a value property.", function () {
+            var deck = createShuffledDeck();
+            deck.forEach(c => expect(typeof (c.value)).to.equal("number"));
+        });
+
+        it("Should return an array of elements that unique image paths.", function () {
+            var deck = createShuffledDeck();
+            expect(deck.length).to.equal([...new Set(deck.map(c => c.image))].length);
         });
     });
 });

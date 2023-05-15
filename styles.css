@@ -21,7 +21,7 @@ h1 {
     align-items: center;
     align-self: center;
     width: 500px;
-    height: 50px;
+    height: 60px;
     background: radial-gradient(rgb(93, 93, 93), rgb(24, 24, 24));
     color: black;
     border: solid black;
@@ -29,7 +29,7 @@ h1 {
     margin: 10px;
 }
 
-.card-background{
+.card-background {
     border-radius: 16px;
 }
 
@@ -92,13 +92,27 @@ h1 {
 }
 
 button {
-    width: 150px;
-    height: 50px;
+    width: 200px;
+    height: 60px;
     margin: 5px;
+    color: white;
+    text-transform: uppercase;
+    font-size: large;
+    background-image: radial-gradient(#89878C, #2f242e);
+    border-radius: 10px;
+}
+
+button:hover {
+    border: solid white;
+}
+
+button:active {
+    background-image: radial-gradient(#2f242e, #89878C)
 }
 
 .buttons {
     display: flex;
-    justify-content: center;
+    align-self: center;
     margin: 10px;
+    border-radius: 4px;
 }

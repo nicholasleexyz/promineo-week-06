@@ -17,6 +17,10 @@ let isRunning = true;
 let scoreOne = 0;
 let scoreTwo = 0;
 
+
+let cardBackgroundOne = tryGetElementById("card-background-one");
+let cardBackgroundTwo = tryGetElementById("card-background-two");
+
 let pointsOne = tryGetElementById("points-player-one");
 let pointsTwo = tryGetElementById("points-player-two");
 let currentCardOne = tryGetElementById("card-player-one");
@@ -115,14 +119,20 @@ function draw() {
 
 function init() {
     isRunning = true;
+    let redGradient = "radial-gradient(#d34f3e, #793345)";
+    let blueGradient = "radial-gradient(#70a8ab, #326e75)";
+
+    cardBackgroundOne.style.background = redGradient;
+    cardBackgroundTwo.style.background = blueGradient;
+
     setCardImage(0);
     setCardImage(1);
     header.style.display = "none";
     pointsOne.textContent = "";
     pointsTwo.textContent = "";
 
-    textboxOne.style.background = "radial-gradient(#d34f3e, #793345)";
-    textboxTwo.style.background = "radial-gradient(#70a8ab, #326e75)";
+    textboxOne.style.background = redGradient;
+    textboxTwo.style.background = blueGradient;
 
     deck = createShuffledDeck();
     cardsPlayerOne = deck.filter((c, i) => i % 2 == 0);

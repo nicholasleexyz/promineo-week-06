@@ -29,6 +29,10 @@ h1 {
     margin: 10px;
 }
 
+.card-background{
+    border-radius: 16px;
+}
+
 .players {
     display: flex;
     width: 100%;

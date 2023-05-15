@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "name": "promineo-week06",
+  "description": "![Screenshot at 2023-05-14 06-58-21](https://github.com/nicholasleexyz/promineo-week06/assets/129869926/9cc47d6e-7ad7-4159-b668-8b21bdd685bf)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholasleexyz/promineo-week06.git"
+  },
+  "author": "Nicholas Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicholasleexyz/promineo-week06/issues"
+  },
+  "homepage": "https://github.com/nicholasleexyz/promineo-week06#readme"
+}

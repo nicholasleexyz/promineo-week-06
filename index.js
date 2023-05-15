@@ -1,7 +1,7 @@
 const showTestWindow = true;
 
-function doSomething(x, y){
-    if(typeof x != 'string')
+function doSomething(x, y) {
+    if (typeof x != 'string')
         throw new Error('x must be a string.');
 
     return x + y;
@@ -150,15 +150,29 @@ function init() {
     updateScores();
     buttonRestart.style.display = "none";
     buttonDraw.style.display = "inline-block";
-    testWindow.style.display = showTestWindow ? "block" :"none";
+    testWindow.style.display = showTestWindow ? "block" : "none";
 }
 
 function updateScores(turnWinner = -1) { // turnWinner is the player that won the current turn. use 0 for one, 1 for two, and 2 for a tie.
-    let plus = turnWinner == 2 ? " (+0)" : " (+1)";
-    let sOne = turnWinner == 0 || turnWinner == 2 ? scoreOne + plus : scoreOne;
-    let sTwo = turnWinner == 1 || turnWinner == 2 ? scoreTwo + plus : scoreTwo;
-    scoreTextOne.textContent = `Score: ${sOne}`;
-    scoreTextTwo.textContent = `Score: ${sTwo}`;
+    pointsOne.textContent = "";
+    pointsTwo.textContent = "";
+    if (turnWinner === 0) {
+        pointsOne.textContent = " (+1)";
+        pointsOne.style.color = "#00DD00";
+    }
+    else if (turnWinner === 1) {
+        pointsTwo.textContent = " (+1)";
+        pointsTwo.style.color = "#00DD00";
+    }
+    else if (turnWinner === 2) {
+        pointsOne.textContent = " (+0)";
+        pointsTwo.textContent = " (+0)";
+        pointsOne.style.color = "#AAAAAA";
+        pointsTwo.style.color = "#AAAAAA";
+    }
+
+    scoreTextOne.textContent = `Score: ${scoreOne}`;
+    scoreTextTwo.textContent = `Score: ${scoreTwo}`;
 }
 
 function setCardImage(player, url = "") { // player can be 0 or 1

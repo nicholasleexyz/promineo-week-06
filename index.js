@@ -1,3 +1,5 @@
+const showTestWindow = true;
+
 function doSomething(x, y){
     if(typeof x != 'string')
         throw new Error('x must be a string.');
@@ -24,10 +26,10 @@ let isRunning = true;
 let scoreOne = 0;
 let scoreTwo = 0;
 
-
 let cardBackgroundOne = tryGetElementById("card-background-one");
 let cardBackgroundTwo = tryGetElementById("card-background-two");
 
+let testWindow = tryGetElementById("test-window");
 let pointsOne = tryGetElementById("points-player-one");
 let pointsTwo = tryGetElementById("points-player-two");
 let currentCardOne = tryGetElementById("card-player-one");
@@ -45,7 +47,6 @@ init();
 
 buttonRestart.addEventListener('click', () => init());
 buttonDraw.addEventListener('click', () => draw());
-
 
 function createShuffledDeck() {
     let currentDeck = [].concat(...cards);
@@ -88,7 +89,6 @@ function declareWinner(player) { // player is 1 or 0
     }
     isRunning = false;
 }
-
 
 function draw() {
     if (!isRunning) return;
@@ -150,6 +150,7 @@ function init() {
     updateScores();
     buttonRestart.style.display = "none";
     buttonDraw.style.display = "inline-block";
+    testWindow.style.display = showTestWindow ? "block" :"none";
 }
 
 function updateScores(turnWinner = -1) { // turnWinner is the player that won the current turn. use 0 for one, 1 for two, and 2 for a tie.

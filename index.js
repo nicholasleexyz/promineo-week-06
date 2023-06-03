@@ -11,6 +11,7 @@ class Card {
 }
 
 const cards = suits.map((s) => ranks.map((r, i) => new Card(`${s}${r}.png`, i)));
+
 let deck = [];
 let cardsPlayerOne = [];
 let cardsPlayerTwo = [];
@@ -112,35 +113,6 @@ function updateScores(turnWinner = -1) {
   scoreTextTwo.textContent = `Score: ${scoreTwo}`;
 }
 
-function init() {
-  isRunning = true;
-  const redGradient = 'radial-gradient(#d34f3e, #793345)';
-  const blueGradient = 'radial-gradient(#70a8ab, #326e75)';
-
-  cardBackgroundOne.style.background = redGradient;
-  cardBackgroundTwo.style.background = blueGradient;
-
-  setCardImage(0);
-  setCardImage(1);
-  header.style.display = 'none';
-  pointsOne.textContent = '';
-  pointsTwo.textContent = '';
-
-  textBoxOne.style.background = redGradient;
-  textBoxTwo.style.background = blueGradient;
-
-  deck = createShuffledDeck();
-  cardsPlayerOne = deck.filter((c, i) => i % 2 === 0);
-  cardsPlayerTwo = deck.filter((c, i) => i % 2 !== 0);
-  currentDrawIndex = 0;
-  scoreOne = 0;
-  scoreTwo = 0;
-  updateScores();
-  buttonRestart.style.display = 'none';
-  buttonDraw.style.display = 'inline-block';
-  testWindow.style.display = showTestWindow ? 'block' : 'none';
-}
-
 function declareWinner(player) { // player is 1 or 0
   buttonRestart.style.display = 'inline-block';
   buttonDraw.style.display = 'none';
@@ -191,6 +163,35 @@ function draw() {
 
     currentDrawIndex = 0;
   }
+}
+
+function init() {
+  isRunning = true;
+  const redGradient = 'radial-gradient(#d34f3e, #793345)';
+  const blueGradient = 'radial-gradient(#70a8ab, #326e75)';
+
+  cardBackgroundOne.style.background = redGradient;
+  cardBackgroundTwo.style.background = blueGradient;
+
+  setCardImage(0);
+  setCardImage(1);
+  header.style.display = 'none';
+  pointsOne.textContent = '';
+  pointsTwo.textContent = '';
+
+  textBoxOne.style.background = redGradient;
+  textBoxTwo.style.background = blueGradient;
+
+  deck = createShuffledDeck();
+  cardsPlayerOne = deck.filter((c, i) => i % 2 === 0);
+  cardsPlayerTwo = deck.filter((c, i) => i % 2 !== 0);
+  currentDrawIndex = 0;
+  scoreOne = 0;
+  scoreTwo = 0;
+  updateScores();
+  buttonRestart.style.display = 'none';
+  buttonDraw.style.display = 'inline-block';
+  testWindow.style.display = showTestWindow ? 'block' : 'none';
 }
 
 init();
